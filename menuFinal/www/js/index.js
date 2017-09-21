@@ -546,6 +546,7 @@ var app = {
     },
 
     refreshMeetingModal: function(){
+        debugger;
         var today = new Date();
         var month = today.getMonth()+1;
         var hour = today.getHours();
@@ -563,19 +564,16 @@ var app = {
             amopm = 'PM';
             if (hour > 12) {
                 hour -= 12;
+                hour = '0'+hour;
+
             }
-        }
-        else{
-            hour = '0'+hour;
         }
         if (hour2 >= 12) {
             amopm2 = 'PM';
             if (hour2 > 12) {
                 hour2 -= 12;
+                hour2 = '0'+hour2;
             }
-        }
-        else{
-            hour2 = '0'+hour2;
         }
         app.modelMeet['fecha'] = month+'/'+today.getDate()+'/'+today.getFullYear()+' '+hour+':'+min+' '+amopm+' - ';
         app.modelMeet['fecha'] += hour2+':'+min+' '+amopm2;
