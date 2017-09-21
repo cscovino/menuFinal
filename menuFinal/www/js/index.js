@@ -406,7 +406,6 @@ var app = {
     addUser: function(data){
         var dato = data.id
         var args = dato.split("_");
-        //$('#invited').attr('value',args[1]);
         document.getElementById('invited').innerHTML = args[1];
         $('.ocult').attr('id',args[0]);
         app.addClient();
@@ -423,7 +422,6 @@ var app = {
     addClient: function(){
         var aux = 0;
         var type;
-        //var user = document.getElementById('invited').value;
         var user = document.getElementById('invited').innerHTML;
         var client = document.getElementsByClassName('ocult')[0].id;
         opts = document.getElementsByClassName('options');
@@ -468,11 +466,9 @@ var app = {
         }
         if (app.modelMeet['users'].length > 0) {
             document.getElementById('guardar-button').disabled = false;
-            document.getElementById('borrar-button').disabled = false;
         }
         codigo += '<div class="input-group" style="width:62.5%;">';
             codigo += '<span class="input-group-addon"><img src="img/social.svg" height="20px"></span>';
-            //codigo += '<input type="text" class="form-control" placeholder="Invitado" data-toggle="modal" data-target="#modalclientes" id="invited">';
             codigo += '<span class="form-control" style="width: 100%;" data-toggle="modal" data-target="#modalclientes" id="invited">Invitado</span>';
             codigo += '<span class="ocult" style="display: none;"></span>';
         codigo += '</div><br>';
@@ -483,6 +479,7 @@ var app = {
         var client = document.getElementById('name-clients').value;
         var name = document.getElementById('name-client').value;
         var email = document.getElementById('email-client').value;
+        var coment = document.getElementById('comment').value
         var aux = 0;
         for(var key in app.model.clients){
             if (key === client) {
@@ -496,7 +493,7 @@ var app = {
         }
         if (!aux) {
             app.saveFirebase2(client,name,email);
-            app.modelMeet['users'].push({'Nombre':name,'Cliente':client});
+            app.modelMeet['users'].push({'Nombre':name,'Cliente':client,'Caract':coment});
             $('#invited').attr('value',name);
             $('.ocult').attr('id',client);
             app.refreshMeeting();
@@ -553,7 +550,7 @@ var app = {
         var month = today.getMonth()+1;
         var hour = today.getHours();
         var min = today.getMinutes();
-        var hour2 = hour+1;
+        var hour2 = hour+2;
         var amopm = 'AM';
         var amopm2 = 'AM';
         if (month < 10) {
@@ -568,11 +565,17 @@ var app = {
                 hour -= 12;
             }
         }
+        else{
+            hour = '0'+hour;
+        }
         if (hour2 >= 12) {
             amopm2 = 'PM';
             if (hour2 > 12) {
                 hour2 -= 12;
             }
+        }
+        else{
+            hour2 = '0'+hour2;
         }
         app.modelMeet['fecha'] = month+'/'+today.getDate()+'/'+today.getFullYear()+' '+hour+':'+min+' '+amopm+' - ';
         app.modelMeet['fecha'] += hour2+':'+min+' '+amopm2;
@@ -691,15 +694,11 @@ var app = {
         codigo += '<label>Invitados para la reunión:</label>';
         codigo += '<div class="input-group" style="width:62.5%;">';
             codigo += '<span class="input-group-addon"><img src="img/social.svg" height="20px"></span>';
-            //codigo += '<input type="text" class="form-control" placeholder="Invitado" data-toggle="modal" data-target="#modalclientes" id="invited">';
             codigo += '<span class="form-control" style="width: 100%;" data-toggle="modal" data-target="#modalclientes" id="invited">Invitado</span>';
             codigo += '<span class="ocult" style="display: none;"></span>';
         codigo += '</div><br>';
         users.append(codigo);
         document.getElementById('guardar-button').disabled = true;
-        document.getElementById('borrar-button').disabled = true;
-        //app.modelMeet = {'titulo':'','sala':'','fecha':'','tech':{},'mat':{},'food':{},'users':[]};
-        //app.refreshMeetingModal();
         app.meetPage();
     },
 
