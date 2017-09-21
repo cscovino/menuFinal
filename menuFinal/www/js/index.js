@@ -546,7 +546,6 @@ var app = {
     },
 
     refreshMeetingModal: function(){
-        debugger;
         var today = new Date();
         var month = today.getMonth()+1;
         var hour = today.getHours();
