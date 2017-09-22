@@ -563,17 +563,17 @@ var app = {
             amopm = 'PM';
             if (hour > 12) {
                 hour -= 12;
-                hour = '0'+hour;
 
             }
         }
+        hour = '0'+hour;
         if (hour2 >= 12) {
             amopm2 = 'PM';
             if (hour2 > 12) {
                 hour2 -= 12;
-                hour2 = '0'+hour2;
             }
         }
+        hour2 = '0'+hour2;
         app.modelMeet['fecha'] = month+'/'+today.getDate()+'/'+today.getFullYear()+' '+hour+':'+min+' '+amopm+' - ';
         app.modelMeet['fecha'] += hour2+':'+min+' '+amopm2;
         app.modelMeet['sala'] = document.getElementById('room-meet').value;
