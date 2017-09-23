@@ -481,6 +481,8 @@ var app = {
         var email = document.getElementById('email-client').value;
         var coment = document.getElementById('comment').value
         var aux = 0;
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        client = client.charAt(0).toUpperCase() + client.slice(1);
         for(var key in app.model.clients){
             if (key === client) {
                 for(var key2 in app.model.clients[client]){
@@ -682,6 +684,13 @@ var app = {
         alert('Reunión guardada');
         app.delMeet();
          $('#myModal9').modal('hide');
+    },
+
+    delNew: function(){
+        document.getElementById('name-clients').value = '';
+        document.getElementById('name-client').value = '';
+        document.getElementById('email-client').value = '';
+        document.getElementById('comment').value = '';
     },
 
     delMeet: function(){
