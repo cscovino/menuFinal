@@ -982,3 +982,69 @@ firebase.database().ref().on('value', function(snap){
         app.setSnap(snap.val());
     }
 });
+
+$('#myModal2').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal3').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal4').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal5').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal6').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal7').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal8').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal9').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal10').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal12').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal16').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal17').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
+$('#myModal18').modal(
+    {show: false,
+    backdrop: 'static',
+    keyboard: false}
+);
