@@ -443,10 +443,10 @@
             <span class="ocult" style="display: none;"></span>
           </div>
         </div><br>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal17">Persona nueva</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal17" onclick="app.hideMeet();">Persona nueva</button>
       </div>
       <div class="modal-footer">
-        <button id="guardar-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal10" disabled="" onclick="app.refreshMeetingModal();">Enviar</button>
+        <button id="guardar-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal10" disabled="">Enviar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="app.delMeet();">Cerrar</button>
       </div>
     </div>
@@ -536,7 +536,7 @@
           <div class="form-group">
             <label>Cliente:</label>
             <div class="input-group">
-                  <span class="input-group-addon" data-toggle="modal" data-target="#myModal18"><img src="img/office-block.svg" height="20px"></span>
+                  <span class="input-group-addon" data-toggle="modal" data-target="#myModal18" onclick="app.hideNewP();"><img src="img/office-block.svg" height="20px"></span>
                   <input type="text" class="form-control" placeholder="Cliente" id="name-clients" style="width: 80%;">
               </div>
           </div>

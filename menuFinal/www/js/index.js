@@ -507,6 +507,7 @@ var app = {
         $('#invited').attr('value',args[1].split(/(?=[A-Z])/).join(" "));
         $('.ocult').attr('id',args[0].split(/(?=[A-Z])/).join(" "));
         app.addClient();
+        $('#myModal9').modal('show');
     },
 
     saveNameMeet: function(){
@@ -936,6 +937,16 @@ var app = {
         else{
             document.getElementById('name-clients').value = dat.id;
         }
+
+        $('#myModal17').modal('show');
+    },
+
+    hideMeet: function(){
+        $('#myModal9').modal('hide');
+    },
+
+    hideNewP: function(){
+        $('#myModal17').modal('hide');
     },
 }
 
