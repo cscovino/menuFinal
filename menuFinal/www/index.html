@@ -362,7 +362,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Cliente ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal7" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -383,7 +383,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Cliente ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal8" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -403,7 +403,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Cliente ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal9" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -413,7 +413,7 @@
       <div id="newmeet" class="modal-body">      
         <div class="form-group" style="width: 62.5%;">
           <label>Título de la reunión:</label>
-          <input type="text" class="form-control" placeholder="Coloque el título de la reunión..." style="width:100%;" id="title-meet" value="">
+          <input type="text" class="form-control" placeholder="Coloque el título de la reunión..." id="title-meet" value="">
         </div>
         <div class="form-group" style="width: 62.5%;">
           <label>Tipo de reunión:</label>
@@ -432,14 +432,14 @@
         </div>
         <div class="form-group" style="width: 62.5%;">
           <label>Sala:</label>
-          <input type="text" class="form-control" placeholder="Coloque la sala..." style="width:100%;" id="room-meet" value="">
+          <input type="text" class="form-control" placeholder="Coloque la sala..." id="room-meet" value="">
         </div>
         <br>
         <div id="info-meet">
           <label>Invitados para la reunión:</label>
           <div class="input-group" style="width:62.5%;">
             <span class="input-group-addon"><img src="img/social.svg" height="20px"></span>
-            <span class="form-control" style="width: 100%;" data-toggle="modal" data-target="#modalclientes" id="invited">Invitado</span>
+            <span class="form-control" data-toggle="modal" data-target="#modalclientes" id="invited">Invitado</span>
             <span class="ocult" style="display: none;"></span>
           </div>
         </div><br>
@@ -458,7 +458,7 @@
 <!-- ###################################################################################################### -->
 <!-- #######################################  Modal ####################################################### -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal10" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -479,11 +479,11 @@
 <!-- ###################################################################################################### -->
 <!-- #######################################  Modal ####################################################### -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal12" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="app.delNew(2);"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel" style="color: #000;">Agregar clientes</h4>
       </div>
       <div class="modal-body">
@@ -512,8 +512,8 @@
         <div id="datab" data-toggle="modal" data-target="#modalclientes2" class="form-group"><img src="img/social.svg" height="30px">&nbsp;&nbsp;Clientes Registrados</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="app.saveNameMeet();">Agregar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="app.delNew(2);">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="app.saveNameMeet();app.delNew(2);">Agregar</button>
       </div>
     </div>
   </div>
@@ -524,7 +524,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Cliente ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal17" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal17" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -562,7 +562,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="app.saveName();" data-dismiss="modal">Agregar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="app.delNew();$('#myModal9').modal('show');">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="app.delNew(1);$('#myModal9').modal('show');">Cerrar</button>
       </div>
     </div>
   </div>
@@ -573,7 +573,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Empresa ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal18" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal18" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -590,7 +590,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Cliente ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="modalclientes2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="modalclientes2" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -612,7 +612,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Cliente ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="modalclientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="modalclientes" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -634,7 +634,7 @@
 <!-- ###################################################################################################### -->
 <!-- #####################################  Modal Cliente ################################################# -->
 <!-- ###################################################################################################### -->
-<div class="modal fade" id="myModal16" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal" id="myModal16" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

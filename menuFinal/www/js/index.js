@@ -686,11 +686,20 @@ var app = {
          $('#myModal9').modal('hide');
     },
 
-    delNew: function(){
-        document.getElementById('name-clients').value = '';
-        document.getElementById('name-client').value = '';
-        document.getElementById('email-client').value = '';
-        document.getElementById('comment').value = '';
+    delNew: function(opt){
+        switch(opt){
+            case 1:
+                document.getElementById('name-clients').value = '';
+                document.getElementById('name-client').value = '';
+                document.getElementById('email-client').value = '';
+                document.getElementById('comment').value = '';
+                break;
+            case 2:
+                document.getElementById('name-clients2').value = '';
+                document.getElementById('name-client2').value = '';
+                document.getElementById('email-clien2t').value = '';
+                break;
+        }
     },
 
     delMeet: function(){
