@@ -531,6 +531,8 @@ var app = {
         var name = document.getElementById('name-client2').value;
         var email = document.getElementById('email-client2').value;
         var id = document.getElementById('meet-id').innerHTML;
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        client = client.charAt(0).toUpperCase() + client.slice(1);
         var aux = 0;
         for(var key in app.model.clients){
             if (key === client) {
@@ -543,9 +545,9 @@ var app = {
             }
         }
         if (!aux) {
-            app.saveFirebase2(client,name,email);
+            app.saveFirebase2(client,name,email,'');
         }
-        app.modelMeet['users'].push({'Nombre':name,'Cliente':client});
+        app.modelMeet['users'].push({'Nombre':name,'Cliente':client,'Caract':''});
         app.model.meetings[id] = app.modelMeet;
         app.saveFirebase3(id);
         app.refreshName(id);
