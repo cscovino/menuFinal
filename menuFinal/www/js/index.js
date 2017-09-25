@@ -57,11 +57,25 @@ var app = {
                 app.odd = 1;
             }
         }
-        codigo += '<div data-toggle="modal" data-target="#myModal12" style="padding:5%;padding-bottom:20%;font-size:20px;border-color:#004f64;text-align:center;">Agregar Persona <b>+</b></div>';
+        codigo += '<div onclick="app.newClient();" style="padding:5%;padding-bottom:20%;font-size:20px;border-color:#004f64;text-align:center;">Agregar Persona <b>+</b></div>';
         app.odd = 0;
         codigo += '<div id="meet-id" style="display:none;">'+data+'</div>';
         users.append(codigo);
         app.modelMeet = app.model.meetings[data];
+    },
+
+    newClient: function(){
+        document.getElementById('nuevoClient').style.display = 'block';
+        document.getElementById('menu-options').style.display = 'none';
+        document.getElementById('title').style.display = 'none';
+        document.getElementById('buttons').style.display = 'none';
+    },
+
+    closeNewC: function(){
+        document.getElementById('nuevoClient').style.display = 'none';
+        document.getElementById('menu-options').style.display = 'block';
+        document.getElementById('title').style.display = 'block';
+        document.getElementById('buttons').style.display = 'block';
     },
 
     refreshMeets: function(){
@@ -479,7 +493,7 @@ var app = {
         var client = document.getElementById('name-clients').value;
         var name = document.getElementById('name-client').value;
         var email = document.getElementById('email-client').value;
-        var coment = document.getElementById('comment').value
+        var coment = document.getElementById('comment').value;
         var aux = 0;
         name = name.charAt(0).toUpperCase() + name.slice(1);
         client = client.charAt(0).toUpperCase() + client.slice(1);
@@ -494,7 +508,7 @@ var app = {
             }
         }
         if (!aux) {
-            app.saveFirebase2(client,name,email);
+            app.saveFirebase2(client,name,email,coment);
             app.modelMeet['users'].push({'Nombre':name,'Cliente':client,'Caract':coment});
             $('#invited').attr('value',name);
             $('.ocult').attr('id',client);
@@ -540,8 +554,8 @@ var app = {
         document.getElementById('email-client').value = '';
     },
 
-    saveFirebase2: function(client,name,email){
-        firebase.database().ref('clients').child(client).child(name).update({Bebida:[''],Coment:[''],Email:email});
+    saveFirebase2: function(client,name,email,caract){
+        firebase.database().ref('clients').child(client).child(name).update({Bebida:[''],Coment:[''],Email:email,Caract:caract});
     },
 
     saveFirebase3: function(id){
@@ -959,12 +973,30 @@ var app = {
         $('#myModal17').modal('show');
     },
 
-    hideMeet: function(){
-        $('#myModal9').modal('hide');
+    closeNewP: function(){
+        document.getElementById('nuevareu').style.display = 'block';
+        document.getElementById('nuevaper').style.display = 'none';
     },
 
-    hideNewP: function(){
-        $('#myModal17').modal('hide');
+    newPerson: function(){
+        document.getElementById('nuevareu').style.display = 'none';
+        document.getElementById('nuevaper').style.display = 'block';
+    },
+
+    planMeet: function(){
+        document.getElementById('nuevareu').style.display = 'block';
+        document.getElementById('title22').style.display = 'block';
+        document.getElementById('title').style.display = 'none';
+        document.getElementById('buttons').style.display = 'none';
+        document.getElementById('menu-meetings').style.display = 'none';
+    },
+
+    closePlan: function(){
+        document.getElementById('nuevareu').style.display = 'none';
+        document.getElementById('title').style.display = 'block';
+        document.getElementById('title22').style.display = 'none';
+        document.getElementById('buttons').style.display = 'block';
+        document.getElementById('menu-meetings').style.display = 'block';
     },
 }
 
@@ -976,14 +1008,6 @@ if ('addEventListener' in document) {
 
     }, false);
 }
-
-$(document).on('show.bs.modal', '.modal', function () {
-    var zIndex = 1040 + (10 * $('.modal:visible').length);
-    $(this).css('z-index', zIndex);
-    setTimeout(function() {
-        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-    }, 0);
-});
 
 firebase.database().ref().on('value', function(snap){
     if (snap.val() !== null) {
