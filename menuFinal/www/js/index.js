@@ -549,9 +549,10 @@ var app = {
         app.model.meetings[id] = app.modelMeet;
         app.saveFirebase3(id);
         app.refreshName(id);
-        document.getElementById('name-clients').value = '';
-        document.getElementById('name-client').value = '';
-        document.getElementById('email-client').value = '';
+        document.getElementById('name-clients2').value = '';
+        document.getElementById('name-client2').value = '';
+        document.getElementById('email-client2').value = '';
+        app.closeNewC();
     },
 
     saveFirebase2: function(client,name,email,caract){
