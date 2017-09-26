@@ -225,9 +225,6 @@ var app = {
             if (document.getElementById('soda').checked) {
                 coment = document.getElementById('soda').value+'.'+coment;
             }
-            if (document.getElementById('aguakina').checked) {
-                coment = document.getElementById('aguakina').value+'.'+coment;
-            }
             if (document.getElementById('chinott').checked) {
                 coment = document.getElementById('chinott').value+'.'+coment;
             }
@@ -330,8 +327,7 @@ var app = {
             document.getElementById('Vino-Blanco').checked = false;
             document.getElementById('Vino-Tinto').checked = false;
             document.getElementById('Whisky').checked = false;
-            document.getElementById('water').checked = false; 
-            document.getElementById('aguakina').checked = false;
+            document.getElementById('water').checked = false;
             document.getElementById('chinott').checked = false;
             document.getElementById('coke').checked = false;
             document.getElementById('lemon').checked = false;
@@ -916,9 +912,6 @@ var app = {
                     }
                     if(com[1] === 'limón'){
                         app.inventory['Limon'] = app.inventory['Limon']-1;
-                    }
-                    if(com[1] === 'aguakina'){
-                        app.inventory['Aguakina'] = app.inventory['Aguakina']-1;
                     }
                     if(com[1] === 'chinotto'){
                         app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
