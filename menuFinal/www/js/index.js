@@ -231,9 +231,6 @@ var app = {
             if (document.getElementById('coke').checked) {
                 coment = document.getElementById('coke').value+'.'+coment;
             }
-            if (document.getElementById('lemon').checked) {
-                coment = document.getElementById('lemon').value+'.'+coment;
-            }
             mood = 4;
             break;
         }   
@@ -316,8 +313,7 @@ var app = {
             break;
           case 3:
             document.getElementById('Chinotto').checked = false;
-            document.getElementById('Coca-Cola').checked = false;
-            document.getElementById('Coca-Cola-Light').checked = false;
+            document.getElementById('Cola').checked = false;
             document.getElementById('ice3').checked = false;
             document.getElementById('ice4').checked = false;  
             document.getElementById('soda-comment').value = '';   
@@ -330,7 +326,6 @@ var app = {
             document.getElementById('water').checked = false;
             document.getElementById('chinott').checked = false;
             document.getElementById('coke').checked = false;
-            document.getElementById('lemon').checked = false;
             document.getElementById('soda').checked = false; 
             document.getElementById('ice').checked = false;
             document.getElementById('ice2').checked = false; 
@@ -875,11 +870,8 @@ var app = {
                 else if (app.order[i][key]['Bebida'] === 'Manzanilla') {
                     app.inventory['Manzanilla'] = app.inventory['Manzanilla']-1;
                 }
-                else if (app.order[i][key]['Bebida'] === 'Coca Cola') {
+                else if (app.order[i][key]['Bebida'] === 'Cola') {
                     app.inventory['CocaCola'] = app.inventory['CocaCola']-1;
-                }
-                else if (app.order[i][key]['Bebida'] === 'Coca Cola Light') {
-                    app.inventory['CocaLight'] = app.inventory['CocaLight']-1;
                 }
                 else if (app.order[i][key]['Bebida'] === 'Chinotto') {
                     app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
@@ -910,13 +902,10 @@ var app = {
                     if (com[1] === 'soda'){
                         app.inventory['Soda'] = app.inventory['Soda']-1;
                     }
-                    if(com[1] === 'limón'){
-                        app.inventory['Limon'] = app.inventory['Limon']-1;
-                    }
                     if(com[1] === 'chinotto'){
                         app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
                     }
-                    if(com[1] === 'coca-cola'){
+                    if(com[1] === 'cola'){
                         app.inventory['CocaCola'] = app.inventory['CocaCola']-1;
                     }
                     if(com[1] === 'azucar'){
