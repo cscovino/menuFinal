@@ -875,7 +875,7 @@ var app = {
                     app.inventory['Manzanilla'] = app.inventory['Manzanilla']-1;
                 }
                 else if (app.order[i][key]['Bebida'] === 'Cola') {
-                    app.inventory['CocaCola'] = app.inventory['CocaCola']-1;
+                    app.inventory['Cola'] = app.inventory['Cola']-1;
                 }
                 else if (app.order[i][key]['Bebida'] === 'Chinotto') {
                     app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
@@ -910,7 +910,7 @@ var app = {
                         app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
                     }
                     if(com[1] === 'cola'){
-                        app.inventory['CocaCola'] = app.inventory['CocaCola']-1;
+                        app.inventory['Cola'] = app.inventory['Cola']-1;
                     }
                     if(com[1] === 'azucar'){
                         app.inventory['Azucar'] = app.inventory['Azucar']-num;
