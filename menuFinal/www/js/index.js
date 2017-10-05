@@ -1046,7 +1046,7 @@ var app = {
                         app.inventory['Cola'] = 0;
                     }
                 }
-                else if (app.order[i][key]['Bebida'] === 'Chinotto') {
+                else if (app.order[i][key]['Bebida'] === 'Refresco de Limón') {
                     app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
                     if (app.inventory['Chinotto']<0) {
                         app.inventory['Chinotto'] = 0;
