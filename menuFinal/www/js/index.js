@@ -18,6 +18,8 @@ var app = {
 
     inventory: {},
 
+    auxInvent : {},
+
     meets: [],
 
     weekday: ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'],
@@ -38,6 +40,7 @@ var app = {
     setSnap: function(snap){
         app.model = snap;
         app.inventory = snap.inventory;
+        app.auxInvent = jQuery.extend(true,{},app.inventory);
         app.refreshData();
         app.refreshMeets();
         app.loadClients();
@@ -168,7 +171,8 @@ var app = {
         var user = document.getElementsByClassName('title-clients')[1].innerHTML.split('>')[1].split('<')[0];
         var client = document.getElementsByClassName('title-clients')[1].id;
         var meetId = document.getElementById('meet-id').innerHTML;
-        var opts,coment,drink,mood;
+        var opts,coment,drink;
+        var pedid = 0;
         var alcohol = 0;
         switch(opt){
           case 1:
@@ -179,28 +183,46 @@ var app = {
             }
             if (document.getElementById('ice6').checked) {
                 coment = document.getElementById('ice6').value+'.'+coment;
-            }
-            mood = 1; 
+            } 
             break;
           case 2:
             opts = document.getElementsByClassName('options-hot');
             coment = document.getElementById('hot-comment').value;
             if (document.getElementById('sugar1').checked) {
                 coment = document.getElementById('sugar1').value+'.'+coment;
+                if (app.auxInvent['Azucar'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Azucar.');
+                    pedid = 1;
+                }
+                app.auxInvent['Azucar'] -= 1;
             }
             else if (document.getElementById('sugar2').checked) {
                 coment = document.getElementById('sugar2').value+'.'+coment;
+                if (app.auxInvent['Azucar'] <= 1) {
+                    alert('Disculpe en estos momentos no tenemos suficiente Azucar.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Azucar'] -= 2;
             }
             else if (document.getElementById('sugar3').checked) {
                 coment = document.getElementById('sugar3').value+'.'+coment;
+                if (app.auxInvent['Azucar'] <= 2) {
+                    alert('Disculpe en estos momentos no tenemos suficiente Azucar.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Azucar'] -= 3;
             }
             else if (document.getElementById('sugar5').checked) {
                 coment = document.getElementById('sugar5').value+'.'+coment;
             }
             else if (document.getElementById('sugar6').checked) {
                 coment = document.getElementById('sugar6').value+'.'+coment;
+                if (app.auxInvent['Splenda'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Splenda.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Splenda'] -= 1;
             }
-            mood = 2;
             break;
           case 3:
             opts = document.getElementsByClassName('options-soda');
@@ -210,8 +232,7 @@ var app = {
             }
             if (document.getElementById('ice4').checked) {
                 coment = document.getElementById('ice4').value+'.'+coment;
-            }
-            mood = 3;      
+            }     
             break;
           case 4:
             alcohol = 1;
@@ -225,20 +246,44 @@ var app = {
             }
             if (document.getElementById('water').checked) {
                 coment = document.getElementById('water').value+'.'+coment;
+                if (app.auxInvent['Agua'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Agua.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Agua'] -= 1;
             }
             if (document.getElementById('soda').checked) {
                 coment = document.getElementById('soda').value+'.'+coment;
+                if (app.auxInvent['Soda'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Soda.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Soda'] -= 1;
             }
             if (document.getElementById('chinott').checked) {
                 coment = document.getElementById('chinott').value+'.'+coment;
+                if (app.auxInvent['Chinotto'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Refresco de Limón.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Chinotto'] -= 1;
             }
             if (document.getElementById('coke').checked) {
                 coment = document.getElementById('coke').value+'.'+coment;
+                if (app.auxInvent['Cola'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Cola.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Cola'] -= 1;
             }
             if (document.getElementById('aguakina').checked) {
                 coment = document.getElementById('aguakina').value+'.'+coment;
+                if (app.auxInvent['Aguakina'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Aguakina.');
+                    pedid = 1;
+                }
+                else app.auxInvent['Aguakina'] -= 1;
             }
-            mood = 4;
             break;
         }   
         for(var i=0; i<opts.length; i++){
@@ -246,10 +291,96 @@ var app = {
                 drink = opts[i].id.replace(/-+/g,' ');
             }
         }
-        if (app.inventory[drink] <= 0) {
-            alert('Disculpe en estos momentos no tenemos '+dirnk+'.');
+        if (drink === "Ron") {
+            if (app.auxInvent[drink] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent[drink] -= 1;
         }
-        else{
+        else if(drink === "Vino Blanco"){
+            if (app.auxInvent['VinoBlanco'] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent['VinoBlanco'] -= 1;
+        }
+        else if(drink === "Vino Tinto"){
+            if (app.auxInvent['VinoTinto'] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent['VinoTinto'] -= 1;
+        }
+        else if(drink === "Whisky"){
+            if (app.auxInvent[drink] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent[drink] -= 1;
+        }
+        else if(drink === "Refresco de Limón"){
+            if (app.auxInvent['Chinotto'] <= 0) {
+                alert('Disculpe en estos momentos no tenemos Refresco de Limón.');
+                pedid = 1;
+            }
+            else app.auxInvent['Chinotto'] -= 1;
+        }
+        else if(drink === "Cola"){
+            if (app.auxInvent[drink] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent[drink] -= 1;
+        }
+        else if(drink === "Cafe con Leche" || drink === "Cafe Marron" || drink === "Cafe Negro"){
+            if (app.auxInvent['Cafe'] <= 0) {
+                alert('Disculpe en estos momentos no tenemos Cafe.');
+                pedid = 1;
+            }
+            else if (drink === "Cafe Marron") {
+                if (app.auxInvent['CoffeeMate'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Cafe Marron.');  
+                }
+                else app.auxInvent['CoffeeMate'] -= 1;
+            }
+            else if (drink === "Cafe con Leche") {
+                if (app.auxInvent['Leche'] <= 0) {
+                    alert('Disculpe en estos momentos no tenemos Cafe con Leche.');  
+                }
+                else app.auxInvent['Leche'] -= 1;
+            }
+            else app.auxInvent['Cafe'] -= 1;
+        }
+        else if(drink === "Manzanilla"){
+            if (app.auxInvent[drink] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent[drink] -= 1;
+        }
+        else if(drink === "Te"){
+            if (app.auxInvent[drink] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent[drink] -= 1;
+        }
+        else if(drink === "Agua"){
+            if (app.auxInvent[drink] <= 0) {
+                alert('Disculpe en estos momentos no tenemos '+drink+'.');
+                pedid = 1;
+            }
+            else app.auxInvent[drink] -= 1;
+        }
+        else if(drink === "Jugo Naranja"){
+            if (app.auxInvent['Jugo'] <= 0) {
+                alert('Disculpe en estos momentos no tenemos Jugo.');
+                pedid = 1;
+            }
+            else app.auxInvent['Jugo'] -= 1;
+        }
+        if (!pedid){
            var aux2 = 0;
             for(var i=0; i<app.order.length; i++){
                 for(var key in app.order[i]){
@@ -297,8 +428,8 @@ var app = {
             else{
               alert('Sólo se permiten máximo dos bebidas por persona');
             } 
-        }   
-        app.clearModal(mood);
+        }  
+        app.clearModal(opt);
     },
 
     clearModal: function(opt){
