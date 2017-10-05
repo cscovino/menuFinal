@@ -338,19 +338,29 @@ var app = {
                 alert('Disculpe en estos momentos no tenemos Cafe.');
                 pedid = 1;
             }
-            else if (drink === "Cafe Marron") {
-                if (app.auxInvent['CoffeeMate'] <= 0) {
-                    alert('Disculpe en estos momentos no tenemos Cafe Marron.');  
+            else{
+                if (drink === "Cafe Marron") {
+                    if (app.auxInvent['CoffeeMate'] <= 0) {
+                        alert('Disculpe en estos momentos no tenemos Cafe Marron.');
+                    pedid = 1;  
+                    }
+                    else{
+                        app.auxInvent['CoffeeMate'] -= 1;
+                        app.auxInvent['Cafe'] -= 1;
+                    } 
                 }
-                else app.auxInvent['CoffeeMate'] -= 1;
-            }
-            else if (drink === "Cafe con Leche") {
-                if (app.auxInvent['Leche'] <= 0) {
-                    alert('Disculpe en estos momentos no tenemos Cafe con Leche.');  
+                else if (drink === "Cafe con Leche") {
+                    if (app.auxInvent['Leche'] <= 0) {
+                        alert('Disculpe en estos momentos no tenemos Cafe con Leche.');
+                    pedid = 1;  
+                    }
+                    else{
+                        app.auxInvent['Leche'] -= 1;
+                        app.auxInvent['Cafe'] -= 1;
+                    }
                 }
-                else app.auxInvent['Leche'] -= 1;
+                else app.auxInvent['Cafe'] -= 1; 
             }
-            else app.auxInvent['Cafe'] -= 1;
         }
         else if(drink === "Manzanilla"){
             if (app.auxInvent[drink] <= 0) {
