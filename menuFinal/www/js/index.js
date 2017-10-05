@@ -235,6 +235,9 @@ var app = {
             if (document.getElementById('coke').checked) {
                 coment = document.getElementById('coke').value+'.'+coment;
             }
+            if (document.getElementById('aguakina').checked) {
+                coment = document.getElementById('aguakina').value+'.'+coment;
+            }
             mood = 4;
             break;
         }   
@@ -243,53 +246,58 @@ var app = {
                 drink = opts[i].id.replace(/-+/g,' ');
             }
         }
-        var aux2 = 0;
-        for(var i=0; i<app.order.length; i++){
-            for(var key in app.order[i]){
-                if (key === user) {
-                    if (app.order[i][user]['client'] === client) {
-                        var cant = app.order[i][user]['Cantidad'];
-                        aux2 = 1;
-                        break;
+        if (app.inventory[drink] <= 0) {
+            alert('Disculpe en estos momentos no tenemos '+dirnk+'.');
+        }
+        else{
+           var aux2 = 0;
+            for(var i=0; i<app.order.length; i++){
+                for(var key in app.order[i]){
+                    if (key === user) {
+                        if (app.order[i][user]['client'] === client) {
+                            var cant = app.order[i][user]['Cantidad'];
+                            aux2 = 1;
+                            break;
+                        }
                     }
                 }
             }
-        }
-        if (!aux2) {
-            var cant = 0;
-        }
-        cant += 1;
-        var fecha = new Date();
-        var h = fecha.getHours();
-        var m = fecha.getMinutes();
-        var hora = h+':'+m;
-        if (cant <= 2) {
-            if (alcohol) {
-                for(var k=0; k<app.model.meetings[meetId]['users'].length; k++) {
-                    if (app.model.meetings[meetId]['users'][k]['Nombre']===user) {
-                        var aux = {};
-                        aux[user] = {};
-                        aux[user] = {'Bebida':drink,'Coment':coment,'Cantidad':cant,'meetId':meetId,'entregado':0,'client':client,'hora':hora};
-                        app.order.push(aux);
-                        app.refreshCart();
-                        app.refreshShopping();
-                        alert('Pedido anotado');
+            if (!aux2) {
+                var cant = 0;
+            }
+            cant += 1;
+            var fecha = new Date();
+            var h = fecha.getHours();
+            var m = fecha.getMinutes();
+            var hora = h+':'+m;
+            if (cant <= 2) {
+                if (alcohol) {
+                    for(var k=0; k<app.model.meetings[meetId]['users'].length; k++) {
+                        if (app.model.meetings[meetId]['users'][k]['Nombre']===user) {
+                            var aux = {};
+                            aux[user] = {};
+                            aux[user] = {'Bebida':drink,'Coment':coment,'Cantidad':cant,'meetId':meetId,'entregado':0,'client':client,'hora':hora};
+                            app.order.push(aux);
+                            app.refreshCart();
+                            app.refreshShopping();
+                            alert('Pedido anotado');
+                        }
                     }
+                }
+                else{
+                    var aux = {};
+                    aux[user] = {};
+                    aux[user] = {'Bebida':drink,'Coment':coment,'Cantidad':cant,'meetId':meetId,'entregado':0,'client':client,'hora':hora};
+                    app.order.push(aux);
+                    app.refreshCart();
+                    app.refreshShopping();
+                    alert('Pedido anotado');
                 }
             }
             else{
-                var aux = {};
-                aux[user] = {};
-                aux[user] = {'Bebida':drink,'Coment':coment,'Cantidad':cant,'meetId':meetId,'entregado':0,'client':client,'hora':hora};
-                app.order.push(aux);
-                app.refreshCart();
-                app.refreshShopping();
-                alert('Pedido anotado');
-            }
-        }
-        else{
-          alert('Sólo se permiten máximo dos bebidas por persona');
-        }
+              alert('Sólo se permiten máximo dos bebidas por persona');
+            } 
+        }   
         app.clearModal(mood);
     },
 
@@ -316,7 +324,7 @@ var app = {
             document.getElementById('hot-comment').value = '';
             break;
           case 3:
-            document.getElementById('Chinotto').checked = false;
+            document.getElementById('Refresco-de-Limón').checked = false;
             document.getElementById('Cola').checked = false;
             document.getElementById('ice3').checked = false;
             document.getElementById('ice4').checked = false;  
@@ -853,44 +861,89 @@ var app = {
             for(var key in app.order[i]){
                 if (app.order[i][key]['Bebida'] === 'Agua'){
                     app.inventory['Agua'] = app.inventory['Agua']-1;
+                    if (app.inventory['Agua']<0) {
+                        app.inventory['Agua'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Jugo Naranja') {
                     app.inventory['Jugo'] = app.inventory['Jugo']-1;
+                    if (app.inventory['Jugo']<0) {
+                        app.inventory['Jugo'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Cafe Negro') {
                     app.inventory['Cafe'] = app.inventory['Cafe']-1;
+                    if (app.inventory['Cafe']<0) {
+                        app.inventory['Cafe'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Cafe Marron') {
                     app.inventory['Cafe'] = app.inventory['Cafe']-1;
-                    app.inventory['Leche'] = app.inventory['Leche']-1;
+                    app.inventory['CoffeeMate'] = app.inventory['CoffeeMate']-1;
+                    if (app.inventory['CoffeeMate']<0) {
+                        app.inventory['CoffeeMate'] = 0;
+                    }
+                    if (app.inventory['Cafe']<0) {
+                        app.inventory['Cafe'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Cafe con Leche') {
                     app.inventory['Cafe'] = app.inventory['Cafe']-1;
                     app.inventory['Leche'] = app.inventory['Leche']-1;
+                    if (app.inventory['Cafe']<0) {
+                        app.inventory['Cafe'] = 0;
+                    }
+                    if (app.inventory['Leche']<0) {
+                        app.inventory['Leche'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Te') {
                     app.inventory['Te'] = app.inventory['Te']-1;
+                    if (app.inventory['Te']<0) {
+                        app.inventory['Te'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Manzanilla') {
                     app.inventory['Manzanilla'] = app.inventory['Manzanilla']-1;
+                    if (app.inventory['Manzanilla']<0) {
+                        app.inventory['Manzanilla'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Cola') {
                     app.inventory['Cola'] = app.inventory['Cola']-1;
+                    if (app.inventory['Cola']<0) {
+                        app.inventory['Cola'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Chinotto') {
                     app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
+                    if (app.inventory['Chinotto']<0) {
+                        app.inventory['Chinotto'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Vino Tinto') {
                     app.inventory['VinoTinto'] = app.inventory['VinoTinto']-1;
+                    if (app.inventory['VinoTinto']<0) {
+                        app.inventory['VinoTinto'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Vino Blanco') {
                     app.inventory['VinoBlanco'] = app.inventory['VinoBlanco']-1;
+                    if (app.inventory['VinoBlanco']<0) {
+                        app.inventory['VinoBlanco'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Ron') {
                     app.inventory['Ron'] = app.inventory['Ron']-1;
+                    if (app.inventory['Ron']<0) {
+                        app.inventory['Ron'] = 0;
+                    }
                 }
                 else if (app.order[i][key]['Bebida'] === 'Whisky') {
                     app.inventory['Whisky'] = app.inventory['Whisky']-1;
+                    if (app.inventory['Whisky']<0) {
+                        app.inventory['Whisky'] = 0;
+                    }
                 }
                 var xxx = app.order[i][key]['Coment'].split('.');
                 for(var j=0; j<xxx.length; j++){
@@ -902,21 +955,45 @@ var app = {
                     catch(err){}
                     if (com[1] === 'agua'){
                         app.inventory['Agua'] = app.inventory['Agua']-1;
+                        if (app.inventory['Agua']<0) {
+                            app.inventory['Agua'] = 0;
+                        }
+                    }
+                    if (com[1] === 'aguakina'){
+                        app.inventory['Aguakina'] = app.inventory['Agua']-1;
+                        if (app.inventory['Aguakina']<0) {
+                            app.inventory['Aguakina'] = 0;
+                        }
                     }
                     if (com[1] === 'soda'){
                         app.inventory['Soda'] = app.inventory['Soda']-1;
+                        if (app.inventory['Soda']<0) {
+                            app.inventory['Soda'] = 0;
+                        }
                     }
-                    if(com[1] === 'chinotto'){
+                    if(com[1] === 'refresco'){
                         app.inventory['Chinotto'] = app.inventory['Chinotto']-1;
+                        if (app.inventory['Chinotto']<0) {
+                            app.inventory['Chinotto'] = 0;
+                        }
                     }
                     if(com[1] === 'cola'){
                         app.inventory['Cola'] = app.inventory['Cola']-1;
+                        if (app.inventory['Cola']<0) {
+                            app.inventory['Cola'] = 0;
+                        }
                     }
                     if(com[1] === 'azucar'){
                         app.inventory['Azucar'] = app.inventory['Azucar']-num;
+                        if (app.inventory['Azucar']<0) {
+                            app.inventory['Azucar'] = 0;
+                        }
                     }
                     if(com[1] === 'splenda'){
                         app.inventory['Splenda'] = app.inventory['Splenda']-1;
+                        if (app.inventory['Splenda']<0) {
+                            app.inventory['Splenda'] = 0;
+                        }
                     }
                 }
             }
