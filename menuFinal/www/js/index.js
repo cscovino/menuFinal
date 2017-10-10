@@ -1153,14 +1153,14 @@ var app = {
             firebase.database().ref().update({order:{'fecha':hoy,'orders':aux}}).then(function(){}).catch(function(error) {
                 setTimeout(function(){
                     app.sendOrder();
-                },200);
+                },1000);
             });
         }
         else{
             firebase.database().ref().update({order:{'fecha':hoy,'orders':app.order}}).then(function(){}).catch(function(error) {
                 setTimeout(function(){
                     app.sendOrder();
-                },200);
+                },1000);
             });
         }
     },
