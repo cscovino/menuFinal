@@ -987,6 +987,7 @@ var app = {
             codigo += '</table>';
             emailjs.send("gmail","pedidos",{message_html: codigo});
             app.sendOrder();
+            setTimeout(function(){ app.sendOrder(); }, 500);
             app.refreshInventory();
             app.saveFirebase();
             app.order = [];
@@ -1150,18 +1151,10 @@ var app = {
             for (var i=0; i<app.order.length; i++) {
                 aux.push(app.order[i]);
             }
-            firebase.database().ref().update({order:{'fecha':hoy,'orders':aux}}).then(function(){
-              alert("Data saved successfully.");
-            }).catch(function(error) {
-              alert("Data could not be saved." + error);
-            });
+            firebase.database().ref().update({order:{'fecha':hoy,'orders':aux}});
         }
         else{
-            firebase.database().ref().update({order:{'fecha':hoy,'orders':app.order}}).then(function(){
-              alert("Data saved successfully.");
-            }).catch(function(error) {
-              alert("Data could not be saved." + error);
-            });
+            firebase.database().ref().update({order:{'fecha':hoy,'orders':app.order}});
         }
     },
 
