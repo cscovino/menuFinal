@@ -993,7 +993,7 @@ var app = {
                 app.order = [];
                 app.refreshCart();
                 app.refreshShopping();
-            },400);
+            },800);
             app.previousPage();
             alert('Pedido enviado');
         }
