@@ -987,7 +987,6 @@ var app = {
             codigo += '</table>';
             emailjs.send("gmail","pedidos",{message_html: codigo});
             app.sendOrder();
-            setTimeout(function(){ app.sendOrder(); }, 500);
             app.refreshInventory();
             app.saveFirebase();
             app.order = [];
