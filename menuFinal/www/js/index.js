@@ -986,12 +986,14 @@ var app = {
                 codigo += '</tbody>';
             codigo += '</table>';
             emailjs.send("gmail","pedidos",{message_html: codigo});
-            app.sendOrder();
-            app.refreshInventory();
-            app.saveFirebase();
-            app.order = [];
-            app.refreshCart();
-            app.refreshShopping();
+            setTimeout(function(){
+                app.sendOrder();
+                app.refreshInventory();
+                app.saveFirebase();
+                app.order = [];
+                app.refreshCart();
+                app.refreshShopping();
+            },400);
             app.previousPage();
             alert('Pedido enviado');
         }
