@@ -150,7 +150,8 @@ var app = {
             document.getElementById('options-reg').style.display = 'none';
             document.getElementById('options-vip').style.display = 'block';
         }
-        document.getElementsByClassName('title-clients')[1].innerHTML = '<span style="font-style:italic;color:#00a5ba;font-size:24px;margin-top:10px;">' + data.innerHTML + '</span>, escoge aquí tu bebida';
+        document.getElementsByClassName('title-clients')[1].innerHTML = '<span style="font-style:italic;color:#00a5ba;font-size:24px;">' + data.innerHTML + '</span>, escoge aquí tu bebida';
+        document.getElementsByClassName('title-clients')[1].style.marginTop = '25px';
         document.getElementsByClassName('title-clients')[1].id = next;
         document.getElementById('title').style.display = 'none';
         document.getElementById('menu-options').style.display = 'none';
