@@ -44,6 +44,39 @@ var app = {
         app.refreshData();
         app.refreshMeets();
         app.loadClients();
+        app.refreshOrders();
+    },
+
+    refreshOrders: function(){
+        var users = $('#orderstatus');
+        users.html('');
+        var codigo = '<table class="table table-bordered"';
+                codigo += '<tbody>';
+                    codigo += '<tr>';
+                        codigo += '<th>Nombre</th>';
+                        codigo += '<th>Bebida</th>';
+                        codigo += '<th>Estado</th>';
+                    codigo += '</tr>';
+                for (var i=0; i<app.model.order.orders.length; i++) {
+                    for(var key in app.model.order.orders[i]){
+                            codigo += '<tr onclick="app.idConfirm('+i+');" data-toggle="modal" data-target="#myModal7">';
+                                codigo += '<td>'+key+'</td>'
+                                codigo += '<td>'+app.model.order.orders[i][key]['Bebida']+'</td>';
+                                if (app.model.order.orders[i][key]['entregado'] === 1) {
+                                    codigo += '<td>Entregado</td>';    
+                                }
+                                else if (app.model.order.orders[i][key]['entregado'] === 2) {
+                                    codigo += '<td>Recibido</td>';
+                                }
+                                else{
+                                    codigo += '<td>Enviado</td>';
+                                }
+                            codigo += '</tr>';
+                    }
+                }
+                codigo += '</tbody>';
+            codigo += '</table>';
+        users.append(codigo);
     },
 
     refreshName: function(data){
@@ -118,6 +151,8 @@ var app = {
         app.refreshShopping();
         document.getElementById('back').style.display = 'none';
         document.getElementById('back2').style.display = 'none';
+        document.getElementById('check').style.display = 'none';
+        document.getElementById('check2').style.display = 'none';
         document.getElementById('menu-options').style.display = 'none';
         document.getElementById('title').style.display = 'block';
         document.getElementById('title').innerHTML = 'Vive la experiencia Soutec';
@@ -129,6 +164,8 @@ var app = {
         app.refreshName(data);
         document.getElementById('back').style.display = 'inline';
         document.getElementById('back2').style.display = 'inline';
+        document.getElementById('check').style.display = 'inline';
+        document.getElementById('check2').style.display = 'inline';
         $('#back').attr("onclick","app.meetPage()");
         $('#back2').attr("onclick","app.meetPage()");
         document.getElementById('menu-options').style.display = 'block';
